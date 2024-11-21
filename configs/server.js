@@ -3,12 +3,15 @@ import cors from 'cors'
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
+import authRoutes from '../src/routes/users.routes.js'
 import apiLimiter from "../src/middlewares/validar-peticiones.js";
 
 class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+
+        this.authPath = '/caretech/v1/auth'
 
         this.conectarDB(); 
         this.middlewares();
@@ -31,7 +34,7 @@ class Server {
 
    
     routes() {  
-
+        this.app.use(this.authPath, authRoutes);
     };
 
     listen() {
