@@ -4,12 +4,13 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
 import apiLimiter from "../src/middlewares/validar-peticiones.js";
+import doctorsRoutes from '../src/Routes/doctors.routes.js';
 
 class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
-
+        this.doctorPath = '/caretech/v1/doctor'
         this.conectarDB(); 
         this.middlewares();
         this.routes();
@@ -31,7 +32,7 @@ class Server {
 
    
     routes() {  
-
+        this.app.use(this.doctorPath, doctorsRoutes);
     };
 
     listen() {
