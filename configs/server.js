@@ -6,14 +6,15 @@ import { dbConnection } from './mongo.js';
 import authRoutes from '../src/routes/users.routes.js'
 import apiLimiter from "../src/middlewares/validar-peticiones.js";
 import doctorsRoutes from '../src/Routes/doctors.routes.js';
+import patientRoutes from '../src/Routes/patients.routes.js';
 
 class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
         this.doctorPath = '/caretech/v1/doctor'
-
         this.authPath = '/caretech/v1/auth'
+        this.patientPath = '/caretech/v1/patient'
 
         this.conectarDB(); 
         this.middlewares();
@@ -38,6 +39,7 @@ class Server {
     routes() {  
         this.app.use(this.doctorPath, doctorsRoutes);
         this.app.use(this.authPath, authRoutes);
+        this.app.use(this.patientPath, patientRoutes);
     };
 
     listen() {

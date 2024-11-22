@@ -1,4 +1,7 @@
 import mongoose, {Schema} from "mongoose";
+import mongooseSequence from "mongoose-sequence";
+
+const AutoIncrement = mongooseSequence(mongoose);
 
 const PatientSchema = mongoose.Schema({
     name: {
@@ -10,7 +13,7 @@ const PatientSchema = mongoose.Schema({
         require: true,
     },
     birthdate: {
-        type: Date,
+        type: String,
         require: true,
     },
     sex: {
@@ -38,5 +41,9 @@ const PatientSchema = mongoose.Schema({
         require: true,
     }
 })
+
+PatientSchema.plugin(AutoIncrement, { inc_field: "record" });
+
+const Patient = mongoose.model("Patient", PatientSchema);
 
 export default mongoose.model('Patient', PatientSchema);
