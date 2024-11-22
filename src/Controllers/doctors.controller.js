@@ -1,6 +1,6 @@
 import { response, request } from "express";
 import Doctor from "../Models/doctors.model.js";
-import User from "../models/users.model.js";
+import User from "../Models/users.model.js";
 
 export const addDoctor = async (req, res) => {
     try {
@@ -28,11 +28,21 @@ export const addDoctor = async (req, res) => {
 
 export const showDoctors = async (req, res) => {
     try {
+        const {uid} = req.user;
+        const user = await User.findById(uid);
+
+        if(!user.view == true){
+            return res.status(400).send("you do not have permissions to view")
+        }
+
         const doctors = await Doctor.find();
+        
         if (!doctors.length > 0) {
             return res.status(400).send("The doctors is not found");
         }
+
         return res.status(200).json(doctors)
+
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal Server Error. Contact the administrator.");
@@ -70,6 +80,11 @@ export const updateDoctor = async (req, res) => {
 
         if(!user.update == true){
             return res.status(400).send("you do not have permissions to add")
+        }
+
+        const existingDoctor = await Doctor.findById(id);
+        if (!existingDoctor) {
+            return res.status(404).send('Doctor with ID not found.');
         }
 
         const { name, lastName, specialty, collegiate, phone, email } = req.body;

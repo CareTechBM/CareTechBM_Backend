@@ -22,6 +22,10 @@ const MedicineSchema = mongoose.Schema({
         type: Date,
         required: true
     },
+    amount: {
+        type: Number,
+        required: true
+    },
 });
 
 export default mongoose.model('Medication', MedicineSchema);
