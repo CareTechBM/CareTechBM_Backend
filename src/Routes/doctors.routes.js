@@ -4,6 +4,7 @@ import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
 import { addDoctor, deleteDoctors, showDoctors, updateDoctor } from "../Controllers/doctors.controller.js";
+import { validarDoctorExists } from "../middlewares/validar-doctor.js";
 
 const router = Router();
 
@@ -19,6 +20,8 @@ router.post(
         check('phone', 'the phone is required').not().isEmpty(),
         check('email', 'the email is required').isEmail(),
         validarCampos,
+        validarJWT,
+        validarDoctorExists,
     ], addDoctor);
 
 router.delete(
@@ -26,6 +29,7 @@ router.delete(
     [
         check("id", "No es un ID valido").isMongoId(),
         validarCampos,
+        validarJWT,
     ], deleteDoctors);
 
 router.put(
@@ -33,6 +37,7 @@ router.put(
     [
         check("id", "No es un ID valido").isMongoId(),
         validarCampos,
+        validarJWT,
     ], updateDoctor);
 
     export default router;

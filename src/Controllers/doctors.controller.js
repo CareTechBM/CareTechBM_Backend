@@ -1,8 +1,17 @@
 import { response, request } from "express";
 import Doctor from "../Models/doctors.model.js";
+import User from "../models/users.model.js";
 
 export const addDoctor = async (req, res) => {
     try {
+
+        const {uid} = req.user;
+        const user = await User.findById(uid);
+
+        if(!user.add == true){
+            return res.status(400).send("you do not have permissions to add")
+        }
+
         const { name, lastName, specialty, collegiate, phone, email } = req.body;
 
         const doctor = new Doctor({ name, lastName, specialty, collegiate, phone, email });
@@ -33,6 +42,12 @@ export const showDoctors = async (req, res) => {
 export const deleteDoctors = async (req, res) => {
     try {
         const { id } = req.params;
+        const {uid} = req.user;
+        const user = await User.findById(uid);
+
+        if(!user.delete == true){
+            return res.status(400).send("you do not have permissions to delete")
+        }
 
         const doctor = await Doctor.findByIdAndDelete(id);
         if (!doctor) {
@@ -49,14 +64,19 @@ export const deleteDoctors = async (req, res) => {
 
 export const updateDoctor = async (req, res) => {
     try {
-
         const { id } = req.params;
+        const {uid} = req.user;
+        const user = await User.findById(uid);
+
+        if(!user.update == true){
+            return res.status(400).send("you do not have permissions to add")
+        }
 
         const { name, lastName, specialty, collegiate, phone, email } = req.body;
 
         await Doctor.findByIdAndUpdate({ _id: id, name, lastName, specialty, collegiate, phone, email })
 
-        return res.status(200).send("Doctor deleted successfully");
+        return res.status(200).send("Doctor update successfully");
 
     } catch (error) {
         console.error(error);

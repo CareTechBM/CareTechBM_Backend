@@ -25,6 +25,26 @@ const UserSchema = mongoose.Schema({
     },
     dateCreation: {
         type: Date
+    },
+    add: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    view: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    delete: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    update: {
+        type: Boolean,
+        default: false,
+        required: true
     }
 });
 
