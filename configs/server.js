@@ -8,6 +8,7 @@ import apiLimiter from "../src/middlewares/validar-peticiones.js";
 import doctorsRoutes from '../src/Routes/doctors.routes.js';
 import patientRoutes from '../src/Routes/patients.routes.js';
 import medicineRoutes from '../src/Routes/medications.routes.js';
+import categoryRoutes from '../src/Models/categories.routes.js';
 
 class Server {
     constructor() {
@@ -17,6 +18,7 @@ class Server {
         this.authPath = '/caretech/v1/auth'
         this.patientPath = '/caretech/v1/patient'
         this.medicinePath = '/caretech/v1/medicine'
+        this.categoryPath = '/caretech/v1/category'
         this.conectarDB(); 
         this.middlewares();
         this.routes();
@@ -42,6 +44,7 @@ class Server {
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.patientPath, patientRoutes);
         this.app.use(this.medicinePath, medicineRoutes);
+        this.app.use(this.categoryPath, categoryRoutes);
     };
 
     listen() {
