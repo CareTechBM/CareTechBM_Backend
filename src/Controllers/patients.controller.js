@@ -1,4 +1,5 @@
 import Patient from '../models/patients.model.js';
+import User from "../models/users.model.js";
 
 export const createPatient = async (req, res) => {
     try {
@@ -23,5 +24,51 @@ export const createPatient = async (req, res) => {
     } catch (e) {
         console.log(e);
         return res.status(500).send("Error creating patient.");
+    }
+}
+
+export const getPatient = async (req, res) => {
+    try {
+
+        const patient = await Patient.find();
+
+        if (!patient.length > 0) {
+            return res.status(400).send("Patient not found");
+        }
+
+        return res.status(200).json(patient)
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send("Error getting patients.");        
+    }
+}
+
+export const updatePatient = async (req, res) => {
+    try {
+        
+        const { id } = req.params;
+        const {uid} = req.user;
+        const user = await User.findById(uid);
+
+        if (!user.update == true){
+            return res.status(400).send("You do not have permissions to update");
+        }
+
+        const patient = await Patient.findById(id);
+
+        if (!patient.length > 0){
+            return res.status(400).send("Error de ID");
+        }
+
+        const { name, lastName, birthdate, sex, address, phone, email, registrationDate, record } = req.body;
+
+        await Patient.findByIdAndUpdate({ _id: id, name, lastName, birthdate, sex, address, phone, email, registrationDate, record })
+
+        return res.status(200).send("Patient update successfully");
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send("Error updating patient.");
     }
 }
