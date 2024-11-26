@@ -55,22 +55,51 @@ export const updatePatient = async (req, res) => {
             return res.status(400).send("You do not have permissions to update");
         }
 
-        const patient = await Patient.findById(id);
+        const existPatient = await Patient.findById(id);
 
-        if (!patient){
-            return res.status(400).send("Error de ID");
+        if (!existPatient){
+            return res.status(400).send("Patient with ID not found.");
         }
 
         const { _id, ...rest } = req.body;
 
         await Patient.findByIdAndUpdate(id, rest );
 
-        const updatePatient = await Patient.findById(id);
-
-        return res.status(200).send("Patient update successfully" + updatePatient);
+        return res.status(200).send("Patient update successfully");
 
     } catch (e) {
         console.log(e);
         return res.status(500).send("Error updating patient.");
+    }
+}
+
+export const deletePatient = async (req, res) => {
+    try {
+        
+        const { id } = req.params;
+        const {uid} = req.user;
+        const user = await User.findById(uid);
+
+        if (!user.delete == true){
+            return res.status(400).send("You do not have permissions to delete");
+        }
+
+        const existPatient = await Patient.findById(id);
+
+        if (!existPatient){
+            return res.status(400).send("Patient with ID not found.");
+        }
+
+        const patient = await Patient.findByIdAndDelete(id);
+
+        if (!patient){
+            return res.status(404).send("The patient does not exist.");
+        }
+
+        return res.status(200).send("Patient successfully removed.");
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send("Error deleting patient.");
     }
 }
