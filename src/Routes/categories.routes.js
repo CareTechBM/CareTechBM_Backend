@@ -7,7 +7,7 @@ import { addCategory, deleteCategories, showCategories, updateCategory } from ".
 
 const router = Router();
 
-router.get('/', validarJWT, showCategories);
+router.get('/', showCategories);
 
 router.post(
     "/",

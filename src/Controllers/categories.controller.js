@@ -1,6 +1,6 @@
 import { response, request } from "express";
 import Category from "../Models/category.model.js"
-import User from "../Models/users.model.js";
+import User from "../models/users.model.js";
 
 export const addCategory = async (req, res) => {
     try {
@@ -89,18 +89,18 @@ export const updateCategory = async (req, res) => {
             return res.status(400).send("you do not have permissions to add")
         }
 
-        const existingDoctor = await Doctor.findById(id);
-        if (!existingDoctor) {
-            return res.status(404).send('Doctor with ID not found.');
+        const category = await Category.findById(id);
+        if (!category) {
+            return res.status(404).send("The category does not exist.");
         }
 
         const { name, description } = req.body;
 
         const nameToUpper = name.toUpperCase();
 
-        await Doctor.findByIdAndUpdate({ _id: id, nameToUpper, description })
+        await Category.findByIdAndUpdate({ _id: id, nameToUpper, description })
 
-        return res.status(200).send("Doctor update successfully");
+        return res.status(200).send("Category update successfully");
 
     } catch (error) {
         console.error(error);
