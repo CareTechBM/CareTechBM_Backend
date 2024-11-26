@@ -1,4 +1,4 @@
-import Patient from '../models/patients.model.js';
+import Patient from '../Models/patients.model.js';
 import User from "../models/users.model.js";
 
 export const createPatient = async (req, res) => {
@@ -57,15 +57,17 @@ export const updatePatient = async (req, res) => {
 
         const patient = await Patient.findById(id);
 
-        if (!patient.length > 0){
+        if (!patient){
             return res.status(400).send("Error de ID");
         }
 
-        const { name, lastName, birthdate, sex, address, phone, email, registrationDate, record } = req.body;
+        const { _id, ...rest } = req.body;
 
-        await Patient.findByIdAndUpdate({ _id: id, name, lastName, birthdate, sex, address, phone, email, registrationDate, record })
+        await Patient.findByIdAndUpdate(id, rest );
 
-        return res.status(200).send("Patient update successfully");
+        const updatePatient = await Patient.findById(id);
+
+        return res.status(200).send("Patient update successfully" + updatePatient);
 
     } catch (e) {
         console.log(e);

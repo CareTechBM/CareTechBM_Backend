@@ -8,7 +8,7 @@ import apiLimiter from "../src/middlewares/validar-peticiones.js";
 import doctorsRoutes from '../src/Routes/doctors.routes.js';
 import patientRoutes from '../src/Routes/patients.routes.js';
 import medicineRoutes from '../src/Routes/medications.routes.js';
-import categoryRoutes from '../src/Models/categories.routes.js';
+import categoryRoutes from '../src/Routes/categories.routes.js';
 
 class Server {
     constructor() {
