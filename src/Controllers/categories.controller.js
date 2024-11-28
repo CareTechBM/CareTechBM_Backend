@@ -98,7 +98,7 @@ export const updateCategory = async (req, res) => {
 
         const nameToUpper = name.toUpperCase();
 
-        await Category.findByIdAndUpdate({ _id: id, nameToUpper, description })
+        await Category.findByIdAndUpdate(id, { name:nameToUpper, description })
 
         return res.status(200).send("Category update successfully");
 

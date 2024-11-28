@@ -1,13 +1,14 @@
 import mongoose, { mongo } from "mongoose";
 
-const RecordSchema = mongoose.Schema({
+const FilesSchema = mongoose.Schema({
     patient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Patient',
     },
     dateCreation: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now,
     },
     observation: {
         type: String,
@@ -35,4 +36,4 @@ const RecordSchema = mongoose.Schema({
     ]
 });
 
-export default mongoose.model('Record', RecordSchema);
+export default mongoose.model('File', FilesSchema);
