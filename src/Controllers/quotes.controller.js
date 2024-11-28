@@ -41,31 +41,62 @@ export const getQuotes = async (req, res) => {
     }
 }
 
-// export const updateQuotes = async (req, res) => {
-//     try {
+export const updateQuotes = async (req, res) => {
+    try {
         
-//         const { id } = req.body;
-//         const {uid} = req.user;
-//         const user = await User.findById(uid);
+        const { id } = req.params;
+        const {uid} = req.user;
+        const user = await User.findById(uid);
 
-//         if (!user.update == true){
-//             return res.status(400).send("You do not have permissions to update");
-//         }
+        if (!user.update == true){
+            return res.status(400).send("You do not have permissions to update");
+        }
 
-//         const existQuotes = await Quotes.findById(id);
+        const existQuotes = await Quotes.findById(id);
         
-//         if (!existQuotes){
-//             return res.status(400).send("Quotes with ID not found.");
-//         }
+        if (!existQuotes){
+            return res.status(400).send("Quotes with ID not found.");
+        }
 
-//         const { _id, ...rest } = req.body;
+        const { _id, ...rest } = req.body;
 
-//         await Quotes.findByIdAndUpdate(id, rest);
+        await Quotes.findByIdAndUpdate(id, rest);
 
-//         return res.status(200).send("Quotes update successfully");
+        return res.status(200).send("Quotes update successfully");
 
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(500).send("Error updating quotes.");
-//     }
-// }
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send("Error updating quotes.");
+    }
+}
+
+export const deleteQuotes = async (req, res) => {
+    try {
+        
+        const { id } = req.params;
+        const {uid} = req.user;
+        const user = await User.findById(uid);
+
+        if (!user.delete == true){
+            return res.status(400).send("You do not have permissions to delete");
+        }
+
+        const existQuotes = await Quotes.findById(id);
+
+        if (!existQuotes){
+            return res.status(400).send("Quotes with ID not found.");
+        }
+
+        const quotes = await Quotes.findByIdAndDelete(id);
+
+        if (!quotes){
+            return res.status(200).send("The quotes does not exist.");
+        }
+
+        return res.status(200).send("Quotes successfully removed.");
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send("Error deleting quotes.");
+    }
+}

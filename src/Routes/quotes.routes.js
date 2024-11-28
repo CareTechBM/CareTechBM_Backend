@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { createQuotes, getQuotes } from "../Controllers/quotes.controller.js";
+import { createQuotes, deleteQuotes, getQuotes, updateQuotes } from "../Controllers/quotes.controller.js";
 
 const router = Router();
 
@@ -28,14 +28,23 @@ router.get(
     getQuotes
 );
 
-// router.put(
-//     "/:id",
-//     [
-//         check("id").isMongoId(),
-//         validarCampos,
-//         validarJWT,
-//     ],
-//     updateQuotes
-// );
+router.put(
+    "/:id",
+    [
+        check("id").isMongoId(),
+        validarCampos,
+        validarJWT,
+    ],
+    updateQuotes
+);
+
+router.delete(
+    "/:id",
+    [
+        check("id").isMongoId(),
+        validarJWT,
+    ],
+    deleteQuotes
+);
 
 export default router;
