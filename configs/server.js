@@ -50,8 +50,8 @@ class Server {
         this.app.use(this.patientPath, patientRoutes);
         this.app.use(this.medicinePath, medicineRoutes);
         this.app.use(this.categoryPath, categoryRoutes);
-        //this.app.use(this.quotesPath, quotesRoutes);
         this.app.use(this.filesPath, filesRoutes);
+        this.app.use(this.quotesPath, quotesRoutes);
     };
 
     listen() {
