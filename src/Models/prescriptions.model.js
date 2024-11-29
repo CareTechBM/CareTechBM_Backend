@@ -11,21 +11,17 @@ const PrescriptionSchema = mongoose.Schema({
         ref: "Doctor",
         require: true,
     },
-    recipeDate: {
-        type: Date,
-        require: true,
-    },
     note: {
         type: String,
         require: false,
     },
     medications: [{
         medicationId: {
-            type: Number,
+            type: String,
             require: true,
         },
         amount: {
-            type: String,
+            type: Number,
             require: true,
         },
         frequency: {

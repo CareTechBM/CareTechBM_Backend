@@ -12,6 +12,7 @@ import categoryRoutes from '../src/Routes/categories.routes.js';
 import quotesRoutes from '../src/Routes/quotes.routes.js';
 import filesRoutes from '../src/Routes/files.routes.js';
 import serviceRoutes from '../src/Routes/services.routes.js';
+import prescriptionRoutes from '../src/Routes/prescriptions.routes.js';
 
 class Server {
     constructor() {
@@ -25,6 +26,7 @@ class Server {
         this.quotesPath = '/caretech/v1/quotes'
         this.filesPath = '/caretech/v1/files'
         this.servicePath = '/caretech/v1/service'
+        this.prescriptionPath = '/caretech/v1/prescription'
         this.conectarDB(); 
         this.middlewares();
         this.routes();
@@ -54,6 +56,7 @@ class Server {
         this.app.use(this.filesPath, filesRoutes);
         this.app.use(this.quotesPath, quotesRoutes);
         this.app.use(this.servicePath, serviceRoutes);
+        this.app.use(this.prescriptionPath, prescriptionRoutes);
     };
 
     listen() {
