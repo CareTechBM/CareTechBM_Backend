@@ -15,7 +15,6 @@ router.post(
         check('name', 'the name is required').not().isEmpty(),
         check('description', 'the description is required').not().isEmpty(),
         check('price', 'the price is required').not().isEmpty(),
-        check('collegiate', 'the collegiate is required').not().isEmpty(),
         check('currency', 'the currency is required').not().isEmpty(),
         check('dateExpiration', 'the dateExpiration is required').not().isEmpty(),
         check('amount', 'the amount is required').not().isEmpty(),

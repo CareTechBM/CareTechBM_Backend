@@ -10,6 +10,7 @@ import patientRoutes from '../src/Routes/patients.routes.js';
 import medicineRoutes from '../src/Routes/medications.routes.js';
 import categoryRoutes from '../src/Routes/categories.routes.js';
 import quotesRoutes from '../src/Routes/quotes.routes.js';
+import filesRoutes from '../src/Routes/files.routes.js';
 import serviceRoutes from '../src/Routes/services.routes.js';
 
 class Server {
@@ -22,6 +23,7 @@ class Server {
         this.medicinePath = '/caretech/v1/medicine'
         this.categoryPath = '/caretech/v1/category'
         this.quotesPath = '/caretech/v1/quotes'
+        this.filesPath = '/caretech/v1/files'
         this.servicePath = '/caretech/v1/service'
         this.conectarDB(); 
         this.middlewares();
@@ -49,6 +51,7 @@ class Server {
         this.app.use(this.patientPath, patientRoutes);
         this.app.use(this.medicinePath, medicineRoutes);
         this.app.use(this.categoryPath, categoryRoutes);
+        this.app.use(this.filesPath, filesRoutes);
         this.app.use(this.quotesPath, quotesRoutes);
         this.app.use(this.servicePath, serviceRoutes);
     };

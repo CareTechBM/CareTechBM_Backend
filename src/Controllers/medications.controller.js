@@ -26,7 +26,8 @@ export const addMedicine = async (req, res) => {
 
         return res.status(200).send("The medicine added successfully");
     } catch (error) {
-        
+        console.error(error);
+        return res.status(500).send("Internal Server Error. Contact the administrator.");
     }
 }
 
@@ -69,28 +70,35 @@ export const deleteMedications = async (req, res) => {
 export const updateMedicine = async (req, res) => {
     try {
         const { id } = req.params;
-        const {uid} = req.user;
+        const { uid } = req.user;
         const user = await User.findById(uid);
 
-        if(!user.update == true){
-            return res.status(400).send("you do not have permissions to add")
+        if (!user || !user.update) {
+            return res.status(403).send("No tienes permisos para actualizar medicamentos.");
         }
 
         const existingMedicine = await Medicine.findById(id);
         if (!existingMedicine) {
-            return res.status(404).send('Medicine with ID not found.');
+            return res.status(404).send("El medicamento con el ID proporcionado no existe.");
         }
 
         const { name, description, price, currency, dateExpiration, amount } = req.body;
 
-        const nameToUpper = name.toUpperCase();
-        
-        await Medicine.findByIdAndUpdate({ _id: id, nameToUpper, description, price, currency, dateExpiration, amount })
+        await Medicine.findByIdAndUpdate(
+            id,
+            {
+                name: name.toUpperCase(),
+                description,
+                price,
+                currency,
+                dateExpiration,
+                amount,
+            }
+        );
 
-        return res.status(200).send("Medicine update successfully");
-
+        return res.status(200).send("Medicamento actualizado correctamente.");
     } catch (error) {
         console.error(error);
-        return res.status(500).send("Internal Server Error. Contact the administrator.");
+        return res.status(500).send("Error interno del servidor. Contacta al administrador.");
     }
-}
+};
