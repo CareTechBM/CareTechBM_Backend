@@ -32,7 +32,7 @@ export const getPatient = async (req, res) => {
 
         const patient = await Patient.find();
 
-        if (!patient.length > 0) {
+        if (!patient) {
             return res.status(400).send("Patient not found");
         }
 

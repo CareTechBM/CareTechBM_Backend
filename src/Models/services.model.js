@@ -16,9 +16,6 @@ const ServiceSchema = mongoose.Schema({
     category:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
-    },
-    dateCreation:{
-        type:Date
     }
 })
 
