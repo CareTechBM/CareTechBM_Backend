@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { addFile, deleteFile, showFiles, updateFile } from "../Controllers/files.controller.js";
+import { addFile, deleteFile, showFiles, updateFile, showFilesByPatient } from "../Controllers/files.controller.js";
 
 
 const router = Router();
@@ -40,6 +40,16 @@ router.delete(
         validarCampos,
     ],
     deleteFile
+);
+
+router.get(
+    '/patient/:patientId',
+    [
+        validarJWT,
+        check('patientId', 'El ID del paciente debe ser válido').isMongoId(),
+        validarCampos,
+    ],
+    showFilesByPatient
 );
 
 export default router;

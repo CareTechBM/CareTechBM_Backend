@@ -100,3 +100,56 @@ export const deleteQuotes = async (req, res) => {
         return res.status(500).send("Error deleting quotes.");
     }
 }
+
+export const getQuotesByPatient = async (req, res) => {
+    try {
+        const { patientId } = req.params;
+
+        const quotes = await Quotes.find({ patientId });
+
+        if (!quotes.length) {
+            return res.status(404).send("No quotes found for this patient.");
+        }
+
+        return res.status(200).json(quotes);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send("Error retrieving quotes by patient.");
+    }
+};
+
+export const getQuotesByDay = async (req, res) => {
+    try {
+        const { date } = req.params;
+
+        const quotes = await Quotes.find({
+            appointmentDate: { $gte: new Date(date), $lt: new Date(new Date(date).getTime() + 24 * 60 * 60 * 1000) }
+        });
+
+        if (!quotes.length) {
+            return res.status(404).send("No quotes found for this day.");
+        }
+
+        return res.status(200).json(quotes);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send("Error retrieving quotes by day.");
+    }
+};
+
+export const getQuotesByDoctor = async (req, res) => {
+    try {
+        const { doctorId } = req.params;
+
+        const quotes = await Quotes.find({ doctorId });
+
+        if (!quotes.length) {
+            return res.status(404).send("No quotes found for this doctor.");
+        }
+
+        return res.status(200).json(quotes);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send("Error retrieving quotes by doctor.");
+    }
+};

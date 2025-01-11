@@ -91,3 +91,21 @@ export const updateFile = async (req, res) => {
         return res.status(500).send("Error interno del servidor. Contacta al administrador.");
     }
 };
+
+export const showFilesByPatient = async (req, res) => {
+    try {
+        const { patientId } = req.params;
+
+        // Buscar archivos asociados al paciente
+        const files = await File.find({ patient: patientId });
+
+        if (!files.length) {
+            return res.status(404).send("No se encontraron archivos para este paciente.");
+        }
+
+        return res.status(200).json(files);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Error al obtener el historial del paciente. Contacta al administrador.");
+    }
+};
