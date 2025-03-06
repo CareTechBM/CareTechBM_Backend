@@ -13,7 +13,7 @@ import doctorsRoutes from '../src/routes/doctor.routes.js';
 import patienteRoutes from '../src/routes/patient.routes.js';
 import medicineRoutes from '../src/routes/medication.routes.js';
 import categoryRoutes from '../src/routes/categorie.routes.js';
-import quotesRoutes from '../src/routes/quote.routes.js';
+import appointmentsRoutes from '../src/routes/appointments.routes.js';
 
 class Server {
     constructor() {
@@ -56,7 +56,7 @@ class Server {
         this.app.use(this.medicinePath, medicineRoutes);
         this.app.use(this.categoryPath, categoryRoutes);
         this.app.use(this.filesPath, filesRoutes);
-        this.app.use(this.quotesPath, quotesRoutes);
+        this.app.use(this.quotesPath, appointmentsRoutes);
         this.app.use(this.servicePath, serviceRoutes);
         this.app.use(this.prescriptionPath, prescriptionRoutes);
         this.app.use(this.billPath, billRoutes);
