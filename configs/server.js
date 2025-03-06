@@ -18,7 +18,7 @@ import billRoutes from '../src/Routes/bills.routes.js';
 class Server {
     constructor() {
         this.app = express();
-        this.port = process.env.PORT;
+        this.port = process.env.PORT || 3000;
         this.doctorPath = '/caretech/v1/doctor'
         this.authPath = '/caretech/v1/auth'
         this.patientPath = '/caretech/v1/patient'
