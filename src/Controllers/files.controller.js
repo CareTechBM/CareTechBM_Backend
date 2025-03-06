@@ -1,6 +1,6 @@
 import { response, request } from "express";
 import User from "../models/users.model.js";
-import File from "../Models/files.model.js";
+import File from "../models/files.model.js";
 
 
 export const addFile = async (req, res) => {

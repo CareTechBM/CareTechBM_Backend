@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { createQuotes, deleteQuotes, getQuotes, updateQuotes, getQuotesByDoctor, getQuotesByDay, getQuotesByPatient } from "../Controllers/quotes.controller.js";
+import { createQuotes, deleteQuotes, getQuotes, updateQuotes, getQuotesByDoctor, getQuotesByDay, getQuotesByPatient } from "../controllers/quotes.controller.js";
 
 const router = Router();
 

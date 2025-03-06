@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { createBill, deleteBill, getBill, updateBill } from "../Controllers/bills.controller.js";
+import { createBill, deleteBill, getBill, updateBill } from "../controllers/bills.controller.js";
 
 const router = Router();
 

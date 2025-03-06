@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { createPrescription, deletePrescription, getPrescription, updatePrescription } from "../Controllers/prescriptions.controller.js";
+import { createPrescription, deletePrescription, getPrescription, updatePrescription } from "../controllers/prescriptions.controller.js";
 
 const router = Router();
 

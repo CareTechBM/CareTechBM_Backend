@@ -3,7 +3,7 @@ import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
-import { addDoctor, deleteDoctors, showDoctors, updateDoctor } from "../Controllers/doctors.controller.js";
+import { addDoctor, deleteDoctors, showDoctors, updateDoctor } from "../controllers/doctors.controller.js";
 import { validarDoctorExists } from "../middlewares/validar-doctor.js";
 
 const router = Router();

@@ -5,15 +5,15 @@ import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
 import authRoutes from '../src/routes/users.routes.js'
 import apiLimiter from "../src/middlewares/validar-peticiones.js";
-import doctorsRoutes from '../src/Routes/doctors.routes.js';
-import patientRoutes from '../src/Routes/patients.routes.js';
-import medicineRoutes from '../src/Routes/medications.routes.js';
-import categoryRoutes from '../src/Routes/categories.routes.js';
-import quotesRoutes from '../src/Routes/quotes.routes.js';
-import filesRoutes from '../src/Routes/files.routes.js';
-import serviceRoutes from '../src/Routes/services.routes.js';
-import prescriptionRoutes from '../src/Routes/prescriptions.routes.js';
-import billRoutes from '../src/Routes/bills.routes.js';
+import doctorsRoutes from '../src/routes/doctors.routes.js';
+import patientRoutes from '../src/routes/patients.routes.js';
+import medicineRoutes from '../src/routes/medications.routes.js';
+import categoryRoutes from '../src/routes/categories.routes.js';
+import quotesRoutes from '../src/routes/quotes.routes.js';
+import filesRoutes from '../src/routes/files.routes.js';
+import serviceRoutes from '../src/routes/services.routes.js';
+import prescriptionRoutes from '../src/routes/prescriptions.routes.js';
+import billRoutes from '../src/routes/bills.routes.js';
 
 class Server {
     constructor() {

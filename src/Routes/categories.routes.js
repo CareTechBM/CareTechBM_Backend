@@ -3,7 +3,7 @@ import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
-import { addCategory, deleteCategories, showCategories, updateCategory } from "../Controllers/categories.controller.js";
+import { addCategory, deleteCategories, showCategories, updateCategory } from "../controllers/categories.controller.js";
 
 const router = Router();
 
