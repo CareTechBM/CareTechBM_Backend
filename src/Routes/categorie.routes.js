@@ -34,4 +34,4 @@ router.put(
         validarJWT,
     ], updateCategory);
 
-    export default router;
+export default router;
