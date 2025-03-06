@@ -3,20 +3,26 @@ import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
-import { addCategory, deleteCategories, showCategories, updateCategory } from "../controllers/categories.controller.js";
+import { addDoctor, deleteDoctors, showDoctors, updateDoctor } from "./doctors.controller.js";
+import { validarDoctorExists } from "../middlewares/validar-doctor.js";
 
 const router = Router();
 
-router.get('/', showCategories);
+router.get('/', showDoctors);
 
 router.post(
     "/",
     [
         check('name', 'the name is required').not().isEmpty(),
-        check('description', 'the description is required').not().isEmpty(),
+        check('lastName', 'the lastname is required').not().isEmpty(),
+        check('specialty', 'the specialty is required').not().isEmpty(),
+        check('collegiate', 'the collegiate is required').not().isEmpty(),
+        check('phone', 'the phone is required').not().isEmpty(),
+        check('email', 'the email is required').isEmail(),
         validarCampos,
         validarJWT,
-    ], addCategory);
+        validarDoctorExists,
+    ], addDoctor);
 
 router.delete(
     "/:id",
@@ -24,7 +30,7 @@ router.delete(
         check("id", "No es un ID valido").isMongoId(),
         validarCampos,
         validarJWT,
-    ], deleteCategories);
+    ], deleteDoctors);
 
 router.put(
     "/:id",
@@ -32,6 +38,6 @@ router.put(
         check("id", "No es un ID valido").isMongoId(),
         validarCampos,
         validarJWT,
-    ], updateCategory);
+    ], updateDoctor);
 
 export default router;

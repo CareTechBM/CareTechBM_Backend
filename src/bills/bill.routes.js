@@ -2,21 +2,24 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { createService, deleteService, getService, updateService } from "../controllers/services.controller.js";
+import { createBill, deleteBill, getBill, updateBill } from "./bills.controller.js";
 
 const router = Router();
 
 router.post(
     "/",
     [
-        check("name"),
-        check("description"),
-        check("price"),
-        check("category"),
+        check("patientId"),
+        check("quotesId"),
+        check("service"),
+        check("medication"),
+        check("total"),
+        check("currency"),
+        check("paymentType"),
         validarCampos,
         validarJWT,
     ],
-    createService
+    createBill
 );
 
 router.get(
@@ -24,20 +27,23 @@ router.get(
     [
         validarJWT,
     ],
-    getService
+    getBill
 );
 
 router.put(
     "/:id",
     [
-        check("name"),
-        check("description"),
-        check("price"),
-        check("category"),
+        check("patientId"),
+        check("quotesId"),
+        check("service"),
+        check("medication"),
+        check("total"),
+        check("currency"),
+        check("paymentType"),
         validarCampos,
         validarJWT,
     ],
-    updateService
+    updateBill
 );
 
 router.delete(
@@ -45,7 +51,7 @@ router.delete(
     [
         validarJWT,
     ],
-    deleteService
+    deleteBill
 );
 
 export default router;

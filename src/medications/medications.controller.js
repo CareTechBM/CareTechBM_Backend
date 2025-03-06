@@ -1,6 +1,6 @@
 import { response, request } from "express";
-import User from "../models/users.model.js";
-import Medicine from "../models/medications.model.js"
+import User from "../users/users.model.js";
+import Medicine from "./medications.model.js"
 
 export const addMedicine = async (req, res) => {
     try {

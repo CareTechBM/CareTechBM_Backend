@@ -1,5 +1,5 @@
-import Bill from '../models/bill.model.js';
-import User from '../models/users.model.js';
+import Bill from './bill.model.js';
+import User from '../users/users.model.js';
 
 export const createBill = async (req, res) => {
     try {

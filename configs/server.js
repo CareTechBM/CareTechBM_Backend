@@ -3,17 +3,17 @@ import cors from 'cors'
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
-import authRoutes from '../src/routes/users.routes.js'
+import authRoutes from '../src/users/users.routes.js'
 import apiLimiter from "../src/middlewares/validar-peticiones.js";
 import patienteRoutes from '../src/patients/patient.routes.js';
-import medicineRoutes from '../src/routes/medication.routes.js';
-import categoryRoutes from '../src/routes/categorie.routes.js';
-import appointmentsRoutes from '../src/routes/appointments.routes.js';
-import filesRoutes from '../src/routes/file.routes.js';
-import serviceRoutes from '../src/routes/service.routes.js';
-import prescriptionRoutes from '../src/routes/prescription.routes.js'
-import billRoutes from '../src/routes/bill.routes.js';
-import doctorsRoutes from '../src/routes/doctors.routes.js';
+import medicineRoutes from '../src/medications/medication.routes.js';
+import categoryRoutes from '../src/categories/categorie.routes.js';
+import appointmentsRoutes from '../src/quotes/appointments.routes.js';
+import filesRoutes from '../src/files/file.routes.js';
+import serviceRoutes from '../src/servicess/service.routes.js';
+import prescriptionRoutes from '../src/prescriptions/prescription.routes.js'
+import billRoutes from '../src/bills/bill.routes.js';
+import doctorsRoutes from '../src/doctors/doctors.routes.js';
 class Server {
     constructor() {
         this.app = express();

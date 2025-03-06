@@ -1,4 +1,4 @@
-import Doctor from '../models/doctors.model.js';
+import Doctor from '../doctors/doctors.model.js';
 
 export const validarDoctorExists = async (req, res, next) => {
     try {

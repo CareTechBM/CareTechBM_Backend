@@ -3,7 +3,7 @@ import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
-import { addMedicine, deleteMedications, showMedications, updateMedicine } from "../controllers/medications.controller.js";
+import { addMedicine, deleteMedications, showMedications, updateMedicine } from "./medications.controller.js";
 
 const router = Router();
 

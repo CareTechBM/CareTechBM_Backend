@@ -1,5 +1,5 @@
 import Service from '../models/services.model.js';
-import User from '../models/users.model.js';
+import User from '../users/users.model.js';
 
 export const createService = async (req, res) => {
     try {
