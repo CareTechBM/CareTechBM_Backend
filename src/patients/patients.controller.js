@@ -17,6 +17,7 @@ export const createPatient = async (req, res) => {
             registrationDate: new Date(),
         });
 
+        
         await patient.save();
 
         return res.status(200).send("Patient successfully added");
