@@ -8,6 +8,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "keywords": [],
   "author": "Brandon Mendoza and Alejandro Max",
   "license": "ISC",
   "dependencies": {
