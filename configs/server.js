@@ -5,7 +5,6 @@ import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
 import authRoutes from '../src/routes/users.routes.js'
 import apiLimiter from "../src/middlewares/validar-peticiones.js";
-import filesRoutes from '../src/routes/files.routes.js';
 import serviceRoutes from '../src/routes/services.routes.js';
 import prescriptionRoutes from '../src/routes/prescriptions.routes.js';
 import billRoutes from '../src/routes/bills.routes.js';
@@ -14,6 +13,7 @@ import patienteRoutes from '../src/routes/patient.routes.js';
 import medicineRoutes from '../src/routes/medication.routes.js';
 import categoryRoutes from '../src/routes/categorie.routes.js';
 import appointmentsRoutes from '../src/routes/appointments.routes.js';
+import filesRoutes from '../src/routes/file.routes.js';
 
 class Server {
     constructor() {
