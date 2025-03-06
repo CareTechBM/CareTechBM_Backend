@@ -15,6 +15,7 @@ import serviceRoutes from '../src/routes/services.routes.js';
 import prescriptionRoutes from '../src/routes/prescriptions.routes.js';
 import billRoutes from '../src/routes/bills.routes.js';
 
+
 class Server {
     constructor() {
         this.app = express();
