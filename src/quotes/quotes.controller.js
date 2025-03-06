@@ -1,4 +1,4 @@
-import Quotes from "../models/quotes.model.js";
+import Quotes from "./quotes.model.js";
 import User from "../users/users.model.js";
 
 export const createQuotes = async (req, res) => {
