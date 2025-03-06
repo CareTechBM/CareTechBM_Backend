@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
 import authRoutes from '../src/routes/users.routes.js'
 import apiLimiter from "../src/middlewares/validar-peticiones.js";
-import patientRoutes from '../src/routes/patients.routes.js';
+import patientRoutes from '../src/routes/patient.routes.js';
 import medicineRoutes from '../src/routes/medications.routes.js';
 import categoryRoutes from '../src/routes/categories.routes.js';
 import quotesRoutes from '../src/routes/quotes.routes.js';
