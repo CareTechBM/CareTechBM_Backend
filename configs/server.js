@@ -5,7 +5,6 @@ import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
 import authRoutes from '../src/routes/users.routes.js'
 import apiLimiter from "../src/middlewares/validar-peticiones.js";
-import doctorsRoutes from '../src/routes/doctor.routes.js';
 import patienteRoutes from '../src/routes/patient.routes.js';
 import medicineRoutes from '../src/routes/medication.routes.js';
 import categoryRoutes from '../src/routes/categorie.routes.js';
@@ -14,7 +13,7 @@ import filesRoutes from '../src/routes/file.routes.js';
 import serviceRoutes from '../src/routes/service.routes.js';
 import prescriptionRoutes from '../src/routes/prescription.routes.js'
 import billRoutes from '../src/routes/bill.routes.js';
-
+import doctorsRoutes from '../src/routes/doctors.routes.js';
 class Server {
     constructor() {
         this.app = express();
