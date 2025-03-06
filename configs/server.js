@@ -13,7 +13,7 @@ import prescriptionRoutes from '../src/routes/prescriptions.routes.js';
 import billRoutes from '../src/routes/bills.routes.js';
 import doctorsRoutes from '../src/routes/doctor.routes.js';
 import patienteRoutes from '../src/routes/patient.routes.js';
-import medicineRoutes from '../src/routes/medications.routes.js';
+import medicineRoutes from '../src/routes/medication.routes.js'
 
 class Server {
     constructor() {

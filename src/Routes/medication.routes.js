@@ -38,4 +38,4 @@ router.put(
         validarJWT,
     ], updateMedicine);
 
-    export default router;
+export default router;
