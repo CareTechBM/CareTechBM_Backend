@@ -44,6 +44,4 @@ const PatientSchema = mongoose.Schema({
 
 PatientSchema.plugin(AutoIncrement, { inc_field: "record" });
 
-const Patient = mongoose.model("Patient", PatientSchema);
-
 export default mongoose.model('Patient', PatientSchema);

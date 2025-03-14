@@ -7,10 +7,10 @@ import { addMedicine, deleteMedications, showMedications, updateMedicine } from 
 
 const router = Router();
 
-router.get('/', validarJWT, showMedications);
+router.get('/view', validarJWT, showMedications);
 
 router.post(
-    "/",
+    "/create",
     [
         check('name', 'the name is required').not().isEmpty(),
         check('description', 'the description is required').not().isEmpty(),
@@ -23,7 +23,7 @@ router.post(
     ], addMedicine);
 
 router.delete(
-    "/:id",
+    "/delete/:id",
     [
         check("id", "No es un ID valido").isMongoId(),
         validarCampos,
@@ -31,7 +31,7 @@ router.delete(
     ], deleteMedications);
 
 router.put(
-    "/:id",
+    "/update/:id",
     [
         check("id", "No es un ID valido").isMongoId(),
         validarCampos,
