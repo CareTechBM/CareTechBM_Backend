@@ -44,7 +44,6 @@ class Server {
         this.app.use(express.json());
         this.app.use(helmet());
         this.app.use(morgan('dev'));
-        this.app.use( apiLimiter );
     };
 
    

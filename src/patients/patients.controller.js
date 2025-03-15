@@ -30,14 +30,29 @@ export const createPatient = async (req, res) => {
 
 export const getPatient = async (req, res) => {
     try {
-
-        const patient = await Patient.find();
-
+        let { page = 1, pageSize = 10 } = req.query;
+        page = parseInt(page);
+        pageSize = parseInt(pageSize);
+        if(page<1) {page = 1};
+        const skip = (page - 1) * pageSize;
+        const patient = await Patient.aggregate([
+            { $skip: skip },
+            { $limit: pageSize },
+            { $sort: { registrationDate: -1 } }
+        ])
+        const totalPatients = await Patient.countDocuments();
+        const totalPages = Math.ceil(await Patient.countDocuments() / pageSize);
         if (!patient) {
             return res.status(400).send("Patient not found");
         }
 
-        return res.status(200).json(patient)
+        return res.status(200).json({
+            patient,
+            page,
+            pageSize,
+            totalPages,
+            totalPatients
+        })
 
     } catch (e) {
         console.log(e);

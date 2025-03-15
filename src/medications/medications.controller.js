@@ -33,11 +33,22 @@ export const addMedicine = async (req, res) => {
 
 export const showMedications = async (req, res) => {
     try {
-        const medications = await Medicine.find();
+        const {page = 1, pageSize = 10} = req.query;
+        const skip = (page - 1) * pageSize;
+        const medications = await Medicine.find({
+            order: 'ASC'
+        }).skip(skip).limit(pageSize);
+        const totalPages = Math.ceil(await Medicine.countDocuments() / pageSize);
+
         if (!medications.length > 0) {
             return res.status(400).send("The medications is not found");
         }
-        return res.status(200).json(medications)
+        return res.status(200).json({
+            medications,
+            page,
+            pageSize,
+            totalPages
+        })
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal Server Error. Contact the administrator.");
